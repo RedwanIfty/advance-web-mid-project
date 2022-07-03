@@ -15,7 +15,8 @@
         <td>{{$u->email;}}</td>
         <td>{{$u->password;}}</td>
         <td>{{$u->type;}}</td>
-        <td><a href="{{route('admin.dash.delete',['id'=>$u->id])}}">Delete</a></td>
+        <td><a href="{{route('admin.dash.delete',['id'=>$u->id])}}">Delete</a>||
+        <a href="{{route('admin.dash.update',['id'=>$u->id])}}">Update</a></td>
         </tr>
 @endforeach
 </table>

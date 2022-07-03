@@ -24,7 +24,7 @@
         @error('conf_password')
             {{$message}}<br>
         @enderror
-        <input type="submit" value="Register">
+        <input type="submit" value="Update">
     </form>
 @endsection
 <h4>{{Session::get('msg')}}</h4>
