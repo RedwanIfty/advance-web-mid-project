@@ -19,4 +19,7 @@ class AdminController extends Controller
         $user=Users::where('id',$id)->delete();
         return redirect()->route('admin.dash.show');
     }
+    // function update(){
+    //     return session()->get('logged');
+    // }
 }
