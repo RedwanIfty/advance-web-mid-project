@@ -51,4 +51,15 @@ class AdminController extends Controller
     session()->flash('msg','Successfully updated');
     return back();
     }
+    function search()
+    {
+        return view('User.search');
+    }
+    function searchSubmit(Request $req){
+        $this->validate($req,[
+            "search"=>"required"
+        ]);
+        $user=Users::where('name','LIKE','%'.$req->search.'%')->get();
+        return view('User.searchresult')->with('user',$user);
+    }
 }

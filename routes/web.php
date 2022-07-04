@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Welcome;
 use App\Http\Controllers\Login;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\RegistrationController;
@@ -14,10 +15,7 @@ use App\Http\Controllers\RegistrationController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/',[Welcome::class,'welcome'])->name('welcome');
 Route::get('/login',[Login::class,'login'])->name('login');
 Route::post('/login',[Login::class,'loginSubmit'])->name('login.submit');
 Route::get('/user/dashboard',[Login::class,'dashboard'])->name('user.dash')->middleware('logged');
@@ -29,6 +27,8 @@ Route::get('admin/dashboard/show/{id}',[AdminController::class,'showIndividual']
 Route::get('admin/dashboard/delete/{id}',[AdminController::class,'delete'])->name('admin.dash.delete')->middleware('logged');
 Route::get('admin/dashboard/update/{id}',[AdminController::class,'update'])->name('admin.dash.update')->middleware('logged');
 Route::post('admin/dashboard/update/{id}',[AdminController::class,'updateSubmit'])->name('admin.dash.update.submit')->middleware('logged');
+Route::get('admin/dashboard/search',[AdminController::class,'search'])->name('admin.dash.search')->middleware('logged');
+Route::post('admin/dashboard/search',[AdminController::class,'searchSubmit'])->name('admin.dash.search.submit')->middleware('logged');
 
 
 Route::get('/user/register',[RegistrationController::class,'register'])->name('register');

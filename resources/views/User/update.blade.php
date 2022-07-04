@@ -26,5 +26,6 @@
         @enderror
         <input type="submit" value="Update">
     </form>
+    <a href="{{route('admin.dash.show')}}">Show All</a>
 @endsection
 <h4>{{Session::get('msg')}}</h4>
