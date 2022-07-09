@@ -17,7 +17,8 @@ class CreateDrugsTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('formula');
-            $table->string('price');
+            $table->integer('price');
+            $table->integer('available');
             $table->timestamps();
         });
     }

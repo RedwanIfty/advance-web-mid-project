@@ -1,19 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="/css/home.css">
+</head>
+<body>
 <h1>User Details</h1>
-<table border='1'>
-<tr>
-    <th>id</th>
-    <th>Name</th>
-    <th>Email</th>
-    <th>Password</th>
-    <th>Type</th>
-</tr>
+
 @foreach($user as $u)
-    <tr>
-        <td>{{$u->id;}}</td>
-        <td>{{$u->name;}}</td>
-        <td>{{$u->email;}}</td>
-        <td>{{$u->password;}}</td>
-        <td>{{$u->type;}}</td>
-    </tr>
+        <div>
+                <div><img src="{{asset('/storage/uploads/'.$u->pro_pic.'')}}" alt="" width=150px height=140px></div>
+                <div>Id:{{$u->id;}}</div>
+                <div>Name:{{$u->name;}}</div>
+                <div>Email:{{$u->email;}}</div>
+                <div>Password:{{$u->password;}}</div>
+                <div>Type:{{$u->type;}}</div>
+
+        </div>
 @endforeach
-</table>
+</body>
+</html>

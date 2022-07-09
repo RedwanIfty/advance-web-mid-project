@@ -21,8 +21,8 @@ class UserSeeder extends Seeder
             'name' => Str::random(10),
             'email' => Str::random(10).'@gmail.com',
             'password' => Hash::make('password'),
-            'type'=>"User",
-            'pro_pic'=>""
+            'type'=>"Employee",
+            'pro_pic'=>"1657340048_1657072580_download (2).png"
         ]);
         }
     }

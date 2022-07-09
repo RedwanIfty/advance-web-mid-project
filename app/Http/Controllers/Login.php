@@ -22,7 +22,7 @@ class Login extends Controller
                             ->where('password',$req->pass)->first();
 
         if($user){
-            $check=Users::where('type','ADMIN')
+            $check=Users::where('type','Admin')
                         ->where('email',$req->email)
                         ->where('password',$req->pass)->first(['type']);
             if($check){

@@ -5,6 +5,7 @@ use App\Http\Controllers\Welcome;
 use App\Http\Controllers\Login;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\RegistrationController;
+use App\Http\Controllers\PharmacyController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -29,7 +30,9 @@ Route::get('admin/dashboard/update/{id}',[AdminController::class,'update'])->nam
 Route::post('admin/dashboard/update/{id}',[AdminController::class,'updateSubmit'])->name('admin.dash.update.submit')->middleware('logged');
 Route::get('admin/dashboard/search',[AdminController::class,'search'])->name('admin.dash.search')->middleware('logged');
 Route::post('admin/dashboard/search',[AdminController::class,'searchSubmit'])->name('admin.dash.search.submit')->middleware('logged');
-
+Route::get('admin/dashboard/download',[AdminController::class,'download'])->name('admin.dash.download')->middleware('logged');
 
 Route::get('/user/register',[RegistrationController::class,'register'])->name('register');
 Route::post('/user/register',[RegistrationController::class,'registerSubmit'])->name('register.submit');
+
+Route::get('show/pharmacy',[PharmacyController::class,'showPharmacy'])->name('show.pharmacy')->middleware('logged');

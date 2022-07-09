@@ -19,7 +19,8 @@ class RegistrationController extends Controller
                 "email"=>"required|unique:user,email",
                 "type"=>"required",
                 "password"=>"required|min:8|regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}+$/i",
-                "conf_password"=>"required|min:8|same:password"
+                "conf_password"=>"required|min:8|same:password",
+                "p_image"=>"required|mimes:jpg,png,jpeg|max:2048"
             ],
             [
                 "name.required"=>"Provide your name",
@@ -30,11 +31,13 @@ class RegistrationController extends Controller
             ]
         );
         $user=new Users();
+        $name= time().'_'.$req->file('p_image')->getClientOriginalName();
+        $req->file('p_image')->storeAs('uploads',$name,'public');
         $user ->name = $req->name;
         $user ->email =$req->email;
         $user ->password =$req->password;
         $user-> type = $req->type;
-        $user -> pro_pic ="";
+        $user -> pro_pic =$name;
         $user->save();
         session()->flash('msg','Successfully Registered');
         return back();
