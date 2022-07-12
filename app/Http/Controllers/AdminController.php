@@ -65,7 +65,8 @@ class AdminController extends Controller
             "search"=>"required"
         ]);
         $user=Users::where('name','LIKE','%'.$req->search.'%')->get();
-        return view('User.searchresult')->with('user',$user);
+        session()->flash('searchRes','Searched result:');
+        return view('User.search')->with('user',$user);
     }
     function showPharmacy(){
         $pharmacy=Pharmacy::all();
