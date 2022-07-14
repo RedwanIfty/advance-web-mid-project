@@ -1,4 +1,4 @@
-<h1>User list</h1>
+
 <link rel="stylesheet" type="text/css" href="/css/image.css">
 @extends('layouts.dash')
 @section('content')
@@ -26,12 +26,14 @@
             <td>{{$u->password;}}</td>
             <td>{{$u->type;}}</td>
             <td><img src="{{asset('/storage/uploads/'.$u->pro_pic.'')}}" alt="" width=50px height=40px></td>
+            @if($u->type!='Admin')
             <td><a href="{{route('admin.dash.delete',['id'=>$u->id])}}" class='butt'>Delete</a>
             <a href="{{route('admin.dash.update',['id'=>$u->id])}}" class='butt-update'>Update</a></td>
+            @endif
             </tr>
     @endforeach
     </table>
-</div class='pagination'>
+</div>
 {{$users->links()}}
 
 <style>

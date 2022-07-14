@@ -6,31 +6,30 @@
         {{@csrf_field()}}
         Name: <input type="text" name="name" placeholder="Name" value="{{old('name')}}"><br>
         @error('name')
-            {{$message}}<br>
+        <p>{{$message}}</p>
         @enderror
         Email: <input type="text" name="email" placeholder="Email"><br>
         @error('email')
-            {{$message}} <br>
+        <p>{{$message}}</p> 
         @enderror
         Type: <input type="radio" value="Patient" name="type"> Patient
               <input type="radio" value="Doctor" name="type"> Doctor
               <input type="radio" value="Employee" name="type">Employee<br>
         @error('type')
-            {{$message}}<br>
+        <p>{{$message}}</p>
         @enderror
-        Image Upload:<input type="file" name="p_image">
+        Image Upload:<input type="file" name="p_image"><br>
 		
          @error('p_image')
-            {{$message}}
+            <p>{{$message}}</p>
         @enderror
-        <br>
         Password: <input type="password" name="password" ><br>
         @error('password')
-            {{$message}}<br>
+        <p>{{$message}}</p>
         @enderror
         Confirm Password: <input type="password" name="conf_password"><br>
         @error('conf_password')
-            {{$message}}<br>
+        <p>{{$message}}</p>
         @enderror
         <input type="submit" value="Register">
     </form>

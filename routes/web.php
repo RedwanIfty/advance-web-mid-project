@@ -35,4 +35,13 @@ Route::get('admin/dashboard/download',[AdminController::class,'download'])->name
 Route::get('/user/register',[RegistrationController::class,'register'])->name('register');
 Route::post('/user/register',[RegistrationController::class,'registerSubmit'])->name('register.submit');
 
-Route::get('show/pharmacy',[PharmacyController::class,'showPharmacy'])->name('show.pharmacy')->middleware('logged');
+Route::get('add/drugs',[AdminController::class,'drugs'])->name('drugs')->middleware('logged');
+Route::post('add/drugs',[AdminController::class,'drugsSubmit'])->name('drugs.submit')->middleware('logged');
+
+Route::get('show/drugs',[AdminController::class,'drugsShow'])->name('drugs.show')->middleware('logged');  
+
+Route::get('drugs/add/{id}',[AdminController::class,'drugsAdd'])->name('drugs.add')->middleware('logged');
+Route::post('drugs/add/{id}',[AdminController::class,'drugsAddSubmit'])->name('drugs.add.submit')->middleware('logged');
+
+Route::get('drugs/delete/{id}',[AdminController::class,'drugsDelete'])->name('drugs.delete')->middleware('logged');
+

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Users;
 use App\Models\Pharmacy;
+use App\Models\Drugs;
 use PDF;
 
 class AdminController extends Controller
@@ -58,6 +59,7 @@ class AdminController extends Controller
     }
     function search()
     {
+        session()->forget('searchRes');
         return view('User.search');
     }
     function searchSubmit(Request $req){
@@ -77,7 +79,56 @@ class AdminController extends Controller
         $pdf=PDF::loadView('Admin.converttopdf',compact('users'));
         // return $pdf;
          return $pdf->download('user.pdf');
- 
-
+    }
+    function drugs(){
+        return view('drugs.add');
+    }
+    function drugsSubmit(Request $req){
+        $this->validate($req,[
+            "name"=>"required|unique:drugs,name",
+            "formula"=>"required",
+            "price"=>"required|numeric",
+            "available"=>"required|numeric",
+        ],
+    [
+        "name.required"=>"Please provide drugs name",
+        "name.unique"=>"Already exists"
+    ]);
+        $drug=new Drugs();
+        $drug->name=$req->name;
+        $drug->formula=$req->formula;
+        $drug->price=$req->price;
+        $drug->available=$req->available;
+        $drug->save();
+        session()->flash('drugsmsg','Save successfull');
+        return back();
+    }
+    function drugsShow(){
+        $drugs=Drugs::paginate(10);
+        return view('drugs.show')->with('drugs',$drugs);
+    }
+    function drugsAdd($id){
+        $name=Drugs::where('id',$id)->pluck('name')->first();
+        $available=Drugs::where('id',$id)->pluck('available')->first();
+        session()->put('name',$name);
+        session()->put('available',$available);
+        return view('drugs.adddrugs');
+    }
+    function drugsAddSubmit(Request $req,$id){
+        $this->validate($req,[
+            "available"=>"required"
+        ]);
+        $drugs=Drugs::find($id);
+        $drugs->available=$drugs->available+$req->available;
+        $drugs->update();
+        session()->flash('drugsAdd','Drugs added');
+        session()->forget('name');
+        session()->forget('available');
+        return redirect()->route('drugs.show');
+    }
+    function drugsDelete($id)
+    {
+        $drugs=Drugs::where('id',$id)->delete();
+        return redirect()->route('drugs.show');
     }
 }

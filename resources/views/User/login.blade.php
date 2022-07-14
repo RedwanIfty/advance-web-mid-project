@@ -8,12 +8,12 @@
     Email:
     <input type="text" name="email" placeholder="Email"><br>
     @error('email')
-     {{$message}} <br>
+    <p style="color : red">{{$message}}</p>
     @enderror
     Password:
     <input type="password" name="pass" placeholder="Password"></br>
     @error('pass')
-     {{$message}} <br>
+     <p style="color : red">{{$message}}</p> <br>
     @enderror
     <input type="submit" value="Login">
 </form>
