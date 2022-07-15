@@ -1,8 +1,5 @@
 @extends('layouts.main')
 @section('content')
-@if(Session::has('logged'))
-<h3>Already Logged in </h3>
-@endif
 <form action="" method="post">
     {{@csrf_field()}}
     Email:
@@ -15,8 +12,12 @@
     @error('pass')
      <p style="color : red">{{$message}}</p> <br>
     @enderror
-    <input type="submit" value="Login">
+    Confirm Password:
+    <input type="password" name="conf_password" placeholder="Confirm Password"></br>
+    @error('conf_password')
+     <p style="color : red">{{$message}}</p> <br>
+    @enderror
+    <input type="submit" value="Submit">
 </form>
-<a href="{{route('forget.pass')}}">Forget Password?</a>
-<h5>{{Session::get('msg')}}</h5>
+<h5>{{Session::get('forgetMsg')}}</h5>
 @endsection

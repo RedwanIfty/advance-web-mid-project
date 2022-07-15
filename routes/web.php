@@ -45,3 +45,8 @@ Route::post('drugs/add/{id}',[AdminController::class,'drugsAddSubmit'])->name('d
 
 Route::get('drugs/delete/{id}',[AdminController::class,'drugsDelete'])->name('drugs.delete')->middleware('logged');
 
+Route::get('drugs/search',[AdminController::class,'searchDrugs'])->name('drugs.search')->middleware('logged');
+Route::post('drugs/search',[AdminController::class,'searchDrugsSubmit'])->name('drugs.search.submit')->middleware('logged');
+
+Route::get('forget/password',[AdminController::class,'forgetPass'])->name('forget.pass');
+Route::post('forget/password',[AdminController::class,'forgetPassSubmit'])->name('forget.pass.submit');

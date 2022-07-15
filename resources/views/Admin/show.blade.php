@@ -2,7 +2,6 @@
 <link rel="stylesheet" type="text/css" href="/css/image.css">
 @extends('layouts.dash')
 @section('content')
-@include('includes.logout')
 <div class="table-wrapper">
     <a href="{{route('admin.dash.download')}}" class='butt-update' style="float:right;">Download PDF</a>
     <table  class="fl-table">

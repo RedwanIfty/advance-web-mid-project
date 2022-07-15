@@ -101,7 +101,7 @@ class AdminController extends Controller
         $drug->available=$req->available;
         $drug->save();
         session()->flash('drugsmsg','Save successfull');
-        return back();
+        return redirect()->route('drugs.show');
     }
     function drugsShow(){
         $drugs=Drugs::paginate(10);
@@ -130,5 +130,46 @@ class AdminController extends Controller
     {
         $drugs=Drugs::where('id',$id)->delete();
         return redirect()->route('drugs.show');
+    }
+    function searchDrugs(){
+        session()->forget('searchDrugs');
+        return view('drugs.search');
+    }
+    function searchDrugsSubmit(Request $req){
+        $this->validate($req,[
+            "search"=>"required|exists:drugs,name"
+        ],
+        [
+            "search.required"=>"Provide drugs name",
+            "search.exists"=>"This drug is not exists"
+        ]
+    );
+    $drugs=Drugs::where('name','LIKE','%'.$req->search.'%')->get();
+    session()->flash('searchDrugs','Searched result');
+    return view('drugs.show')->with('drugs',$drugs);
+
+    }
+    function forgetPass(){
+        return view('User.forgetpass');
+    }
+    function forgetPassSubmit(Request $req){
+        $this->validate($req,[
+            "email"=>"required|exists:user,email",
+            "pass"=>"required|min:8|regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}+$/i",
+            "conf_password"=>"required|min:8|same:pass"
+        ],
+    [
+        "email.required"=>"Please Provide email address",
+        "email.exists"=>"Email do not exists",
+        "pass.required"=>"Please Provide password",
+        "pass.regex"=>"Password must contain upper case,lower case,number and special characters",
+        "conf_password.required"=>"Please  Confirm password",
+        "conf_password.same"=>"Confirm password don't match with password"
+    ]);
+        $user=Users::where('email',$req->email)->first();
+        $user->password=$req->pass;
+        $user->update();
+        session()->flash('forgetMsg','Change password successfull');
+        return back();
     }
 }

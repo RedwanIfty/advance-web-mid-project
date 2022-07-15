@@ -1,5 +1,7 @@
 <link rel="stylesheet" href="/css/image.css">
-@extends('layouts.main')
+<link rel="stylesheet" href="/css/login.css">
+
+@extends('layouts.dash')
 
 @section('content')
     <form method="post" action="" enctype="multipart/form-data">
