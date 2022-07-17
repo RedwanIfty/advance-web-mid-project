@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\Users;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\Conformation;
 
 class RegistrationController extends Controller
 {
@@ -15,7 +17,7 @@ class RegistrationController extends Controller
     function registerSubmit(Request $req){
         $this->validate($req,
             [
-                "name"=>"required|max:20|min:3|regex:/^[a-z ,.'-]+$/i",
+                "name"=>"required|max:30|min:3|regex:/^[a-z ,.'-]+$/i",
                 "email"=>"required|unique:user,email",
                 "type"=>"required",
                 "password"=>"required|min:8|regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}+$/i",
@@ -30,6 +32,7 @@ class RegistrationController extends Controller
                 "conf_password.same"=>"Confirm password and password don't match"
             ]
         );
+
         $user=new Users();
         $name= time().'_'.$req->file('p_image')->getClientOriginalName();
         $req->file('p_image')->storeAs('uploads',$name,'public');
@@ -38,6 +41,8 @@ class RegistrationController extends Controller
         $user ->password =$req->password;
         $user-> type = $req->type;
         $user -> pro_pic =$name;
+    
+        //Mail::to([$req->email])->send(new Conformation("Registration Confirmation","Dear you have been successfully registered"));
         $user->save();
         session()->flash('msg','Successfully Registered');
         return back();

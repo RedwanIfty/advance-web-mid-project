@@ -59,7 +59,7 @@ input[type=text], select {
     background-color: #f2f2f2;
     padding: 20px;
   }
-  p{
+  p.error{
     color: red;
   }
   h5{

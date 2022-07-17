@@ -172,4 +172,10 @@ class AdminController extends Controller
         session()->flash('forgetMsg','Change password successfull');
         return back();
     }
+    function downloaddrugs(){
+       $drugs=Drugs::all();
+        $pdf=PDF::loadView('drugs.showpdf',compact('drugs'));
+        // return $pdf;
+         return $pdf->download('drugs.pdf');
+    }
 }

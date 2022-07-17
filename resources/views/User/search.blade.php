@@ -1,4 +1,5 @@
-<h1>Search</h1>
+@extends('layouts.dash')
+@section('content')
 <form method="post" action="">
         {{@csrf_field()}}
         Name: <input type="text" name="search" placeholder="Search" value="{{old('search')}}"><br>
@@ -9,7 +10,8 @@
         <input type="submit" value="search">
 </form>
 @if(Session::has('searchRes'))
-<table border='1'>
+<div class="table-wrapper">
+<table  class="fl-table">
 <tr>
     <th>Name:</th>
     <th>Email:</th>
@@ -23,4 +25,6 @@
 </tr>
 @endforeach
 </table>
+</div>
 @endif
+@endsection

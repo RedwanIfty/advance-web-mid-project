@@ -1,6 +1,7 @@
 @extends('layouts.drugs')
 @section('content')
 <div class="table-wrapper">
+<a href="{{route('drugs.download')}}" class='butt-update' style="float:right;">Download PDF</a>
 <table class="fl-table">
     <tr>
         <th>ID</th>
@@ -8,6 +9,7 @@
         <th>Formula</th>
         <th>Price</th>
         <th>Available</th>
+        <th>Total price</th>
         <th>Action</th>
     </tr>
     @if(Session::has('searchDrugs'))
@@ -18,6 +20,7 @@
         <td>{{$d->formula}}</td>
         <td>{{$d->price}}</td>
         <td>{{$d->available}}</td>
+        <td>{{$d->price*$d->available}}</td>
         <td><a href="{{route('drugs.add',['id'=>$d->id])}}" class='butt-update'>Add</a>
         <a href="{{route('drugs.delete',['id'=>$d->id])}}" class='butt'>Delete</a></td>
     </tr>
@@ -30,6 +33,7 @@
         <td>{{$d->formula}}</td>
         <td>{{$d->price}}</td>
         <td>{{$d->available}}</td>
+        <td>{{$d->price*$d->available}}</td>
         <td><a href="{{route('drugs.add',['id'=>$d->id])}}" class='butt-update'>Add</a>
         <a href="{{route('drugs.delete',['id'=>$d->id])}}" class='butt'>Delete</a></td>
     </tr>

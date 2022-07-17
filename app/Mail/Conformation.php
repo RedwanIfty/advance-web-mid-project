@@ -10,15 +10,18 @@ use Illuminate\Queue\SerializesModels;
 class Conformation extends Mailable
 {
     use Queueable, SerializesModels;
+    public $sub;
+    public $body;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($sub,$body)
     {
-        //
+        $this->sub=$sub;
+        $this->body=$body;
     }
 
     /**
@@ -28,6 +31,9 @@ class Conformation extends Mailable
      */
     public function build()
     {
-        return $this->view('view.name');
+        
+        return $this->view('mails.confirmation')
+        ->with('body',$this->body)
+        ->subject($this->sub);
     }
 }

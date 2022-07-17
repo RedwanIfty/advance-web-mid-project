@@ -31,6 +31,8 @@ Route::post('admin/dashboard/update/{id}',[AdminController::class,'updateSubmit'
 Route::get('admin/dashboard/search',[AdminController::class,'search'])->name('admin.dash.search')->middleware('logged');
 Route::post('admin/dashboard/search',[AdminController::class,'searchSubmit'])->name('admin.dash.search.submit')->middleware('logged');
 Route::get('admin/dashboard/download',[AdminController::class,'download'])->name('admin.dash.download')->middleware('logged');
+Route::get('drugs/download',[AdminController::class,'downloaddrugs'])->name('drugs.download')->middleware('logged');//download pdf
+
 
 Route::get('/user/register',[RegistrationController::class,'register'])->name('register');
 Route::post('/user/register',[RegistrationController::class,'registerSubmit'])->name('register.submit');
@@ -50,3 +52,14 @@ Route::post('drugs/search',[AdminController::class,'searchDrugsSubmit'])->name('
 
 Route::get('forget/password',[AdminController::class,'forgetPass'])->name('forget.pass');
 Route::post('forget/password',[AdminController::class,'forgetPassSubmit'])->name('forget.pass.submit');
+
+Route::get('show/pharmacy',[PharmacyController::class,'pharmacy'])->name('show.pharmacy')->middleware('logged');
+Route::get('add/pharmacy',[PharmacyController::class,'pharmacyAdd'])->name('add.pharmacy')->middleware('logged');
+Route::post('add/pharmacy',[PharmacyController::class,'pharmacyAddSubmit'])->name('add.submit.pharmacy')->middleware('logged');
+
+Route::get('pharmacy/search',[PharmacyController::class,'search'])->name('search.pharmacy')->middleware('logged');
+Route::post('pharmacy/search',[PharmacyController::class,'searchSubmit'])->name('search.pharmacy.submit')->middleware('logged');
+Route::get('pharmacy/delete/{id}',[PharmacyController::class,'delete'])->name('delete.pharmacy')->middleware('logged');
+
+Route::get('pharmacy/update/{id}',[PharmacyController::class,'update'])->name('update.pharmacy')->middleware('logged');
+Route::post('pharmacy/update/{id}',[PharmacyController::class,'updateSubmit'])->name('update.submit.pharmacy')->middleware('logged');

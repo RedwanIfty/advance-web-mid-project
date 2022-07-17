@@ -1,4 +1,5 @@
 <link rel="stylesheet" type="text/css" href="/css/nav.css">
+<link rel="stylesheet" type="text/css" href="/css/dash.css">
 <header>
         <nav class="navbar">
             <ul>
@@ -9,3 +10,4 @@
             </ul>
         </nav>
     </header>
+    @include('layouts.footer')
