@@ -7,7 +7,8 @@
                 <li><a href="{{route('drugs.show')}}">Show Drugs</a></li>
                 <li><a href="{{route('show.pharmacy')}}">Show Pharmacy</a></li>
                 <li><a href="{{route('admin.dash.search')}}">Search</a></li>
-                <li><a href="{{route('admin.dash.show')}}">Show All</a></ii>
+                <li><a href="{{route('admin.dash.show')}}">Show User</a></li>
+                <li><a href="{{route('admin.dash.changeProfilePic')}}">Change Profile Picture</a></li>
                 <li><a href="#">Contact us</a></li>
                 <li><a href="{{route('logout')}}">Logout</a></li>
             </ul>

@@ -21,6 +21,4 @@
     
     <input type="submit" value="Submit">
 </form>
-<h5 style="color : green">{{Session::get('msgpharmacy')}}</h5>
-
 @endsection

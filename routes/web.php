@@ -33,6 +33,9 @@ Route::post('admin/dashboard/search',[AdminController::class,'searchSubmit'])->n
 Route::get('admin/dashboard/download',[AdminController::class,'download'])->name('admin.dash.download')->middleware('logged');
 Route::get('drugs/download',[AdminController::class,'downloaddrugs'])->name('drugs.download')->middleware('logged');//download pdf
 
+Route::get('admin/dashboard/changeProfilePic',[AdminController::class,'changeProfilePic'])->name('admin.dash.changeProfilePic')->middleware('logged');
+Route::post('admin/dashboard/changeProfilePic',[AdminController::class,'changeProfilePicSubmit'])->name('admin.dash.changeProfilePic.submit')->middleware('logged');
+
 
 Route::get('/user/register',[RegistrationController::class,'register'])->name('register');
 Route::post('/user/register',[RegistrationController::class,'registerSubmit'])->name('register.submit');

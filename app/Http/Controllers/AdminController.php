@@ -178,4 +178,19 @@ class AdminController extends Controller
         // return $pdf;
          return $pdf->download('drugs.pdf');
     }
+    function changeProfilePic(){
+        return view('User.changeProfilePic');
+    }
+    function changeProfilePicSubmit(Request $req){
+        $this->validate($req,[
+            'p_image'=>'required|mimes:jpg,png,jpeg|max:2048'
+        ]);
+        $users=Users::where('email',session()->get('logged'))->first();
+        $name= time().'_'.$req->file('p_image')->getClientOriginalName();
+        $req->file('p_image')->storeAs('uploads',$name,'public');
+        $users -> pro_pic =$name;
+        $users->update();
+        session()->flash('imageUpdate','profile Picture Changed successfully');
+        return redirect()->route('admin.dash.show');
+    }
 }

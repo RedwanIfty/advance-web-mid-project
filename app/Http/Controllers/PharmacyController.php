@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Models\Pharmacy;
 
+
 class PharmacyController extends Controller
 {
     function pharmacy(){
@@ -65,7 +66,7 @@ class PharmacyController extends Controller
         $pharmacy->address=$req->address;
         $pharmacy->phone_no=$req->phone_no;
         $pharmacy->update();
-        session()->flash('pharmacyUpdate',$name.' updated successfully');
+        session()->flash('pharmacyUpdate',$name.' updated successfully to '.$req->name);
         return redirect()->route('show.pharmacy');
 
     }

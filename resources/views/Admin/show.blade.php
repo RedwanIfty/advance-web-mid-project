@@ -14,9 +14,6 @@
         <th>Profile Picture</th>
         <th>Action</th>
     </tr>
-    @php
-    $sum=0;
-    @endphp
     @foreach($users as $u)
         <tr>
             <td><a href="{{route('admin.dash.show.individual',['id'=>$u->id])}}">{{$u->id;}}</a></td>
@@ -41,4 +38,5 @@
     }
 </style>
 <h4 style="color:green;">{{Session::get('updateMsg')}}<h4>
+<h4 style="color:green;">{{Session::get('imageUpdate')}}<h4>
 @endsection
